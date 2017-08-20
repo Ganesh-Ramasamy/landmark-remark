@@ -131,14 +131,14 @@ and no domain logic is allowed to be leaked into presentation layer, so that pre
 
 
 ## Infrastructure Layer
-![Infrastructure layer](doc/diagrams/infrastructure.png)
+![Infrastructure layer](doc/diagrams/infrastrucutre.png)
 
 
 ## Crosscutting Layer
-![Crosscutting layer](doc/diagrams/Crosscutting.png)
+![Crosscutting layer](doc/diagrams/crosscutting.png)
 
 ## Bootstrapping Layer
-![Bootstrapping layer](doc/diagrams/Bootstrapping.png)
+![Bootstrapping layer](doc/diagrams/bootstrapping.png)
 
 
 ## Command Query Responsibilities Segregation (CSRS) is Used in Conjunction with a Event Bus
