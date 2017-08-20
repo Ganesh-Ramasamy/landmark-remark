@@ -1,0 +1,128 @@
+﻿@using LandmarkRemark.UseCase.Shared
+@using Newtonsoft.Json
+
+@model IList<RemarkResponse>
+
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="top-buffer"></div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">Search Result</div>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+    <div class="row">
+        <div id="map" class="col-md-6 col-md-offset-3" style="height:400px"></div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYmsHXzrYd_qbchmVe9xzrtH3XZL7n3v0&libraries=geometry">
+    </script>
+
+    <script type="text/javascript">
+
+
+        (function () {
+            document.landmarkRemark = {
+                map: null,
+                currentPosition: null,
+                remarks: @Html.Raw(JsonConvert.SerializeObject(Model)),
+                InfoWindow: null
+            }
+        })(document);
+
+        function showMap(latitude, longitude) {
+
+            var googleLatLong = new google.maps.LatLng(latitude, longitude);
+            var mapOptions = {
+                zoom: 13,
+                center: googleLatLong,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            var mapDiv = document.getElementById("map");
+            document.landmarkRemark.map = new google.maps.Map(mapDiv, mapOptions);
+
+            document.landmarkRemark.infoWindow = new google.maps.InfoWindow();
+
+            showMarkers(document.landmarkRemark.remarks)
+        }
+
+
+        function showMarkers(markers) {
+
+            for (var i = 0; i < markers.length; i++) {
+                var marker = markers[i];
+                createMarker(marker.Location.Latitude, marker.Location.Longitude, marker.Remark);
+            }
+        }
+
+        function createMarker(latitude, longitude, remark) {
+
+            var googleLatLong = new google.maps.LatLng(latitude, longitude);
+
+            var markerOptions = {
+                position: googleLatLong,
+                map: document.landmarkRemark.map,
+                clickable: true
+            };
+
+            var marker = new google.maps.Marker(markerOptions);
+
+
+            var info = "Location: Lat " + latitude +
+                ", Lng " + longitude + "<br\>" +
+                remark;
+
+            google.maps.event.addListener(marker, "click", function (event) {
+                document.landmarkRemark.infoWindow.setContent(info);
+                document.landmarkRemark.infoWindow.open(
+                    document.landmarkRemark.map, marker);
+            });
+
+            return marker;
+        }
+
+
+        function getCenterLocation() {
+            var remarks = document.landmarkRemark.remarks;
+            if (remarks.length > 0) {
+                return {
+                    longitude: remarks[0].Location.Longitude,
+                    latitude: remarks[0].Location.Latitude
+                };
+            }
+
+            return {
+                longitude: document.landmarkRemark.currentPosition.coords.longitude,
+                latitude: document.landmarkRemark.currentPosition.latitude
+            };
+        }
+
+        function displayLocation(position) {
+            document.landmarkRemark.currentPosition = position;
+        }
+
+        $(document).ready(function () {
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(displayLocation);
+            }
+
+            var center = getCenterLocation();
+            showMap(center.latitude, center.longitude);
+            showMarkers(document.landmarkRemark.remarks);
+        });
+
+    </script>
+
+}
+
+
+
+
+

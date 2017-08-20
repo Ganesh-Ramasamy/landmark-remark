@@ -1,0 +1,155 @@
+﻿
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="top-buffer"></div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">Current location (green marker)</div>
+            <div class="panel-body">
+                <section>                   
+                    <h4>Enter the remark, and double click on the map to create a remark</h4>
+                    <hr />
+
+                    <div class="form-group">
+                        <label for="Remark" class="col-md-2 control-label">Remark</label>
+                        <div class="col-md-10">
+                            <input name="Remark" class="form-control" />
+                        </div>
+                    </div>                       
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+    <div class="row">
+        <div id="map" class="col-md-6 col-md-offset-3" style="height:400px"></div>
+    </div>
+</div>
+
+@section Scripts{
+
+<script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYmsHXzrYd_qbchmVe9xzrtH3XZL7n3v0&libraries=geometry">
+</script>
+    
+<script type="text/javascript">
+
+
+    (function () {
+        document.landmarkRemark = {
+            map: null,
+            markers: [],
+            infoWindow: null,
+            currentMarker: null,
+            currentPosition: null
+        }
+    })(document);
+    
+    function displayLocation(position) {
+        document.landmarkRemark.currentPosition = position;
+        showMap(position.coords);
+    }
+
+    function showMap(coords) {
+        var googleLatLong = new google.maps.LatLng(coords.latitude, coords.longitude);
+        var mapOptions = {
+            zoom: 13,
+            center: googleLatLong,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var mapDiv = document.getElementById("map");
+        var map = new google.maps.Map(mapDiv, mapOptions);
+        document.landmarkRemark.map = map;
+
+        document.landmarkRemark.infoWindow = new google.maps.InfoWindow();
+
+        document.landmarkRemark.currentMarker = createMarker(googleLatLong, "green");
+
+        google.maps.event.addListener(map, "dblclick", function (event) {
+            var latitude = event.latLng.lat();
+            var longitude = event.latLng.lng();
+            //createMarker(event.latLng);
+            var remark = $("input[name='Remark'").val();
+            createRemark(latitude, longitude, remark);
+        });        
+
+        navigator.geolocation.watchPosition(function (event) {
+            if (event.coords.longitude != document.landmarkRemark.currentPosition.coords.longitude ||
+                event.coords.latitude != document.landmarkRemark.currentPosition.coords.latitude) {
+
+                document.landmarkRemark.currentPosition = event;
+
+                document.landmarkRemark.currentMarker.setMap(null);
+                var googleLatLong = new google.maps.LatLng(event.coords.latitude, event.coords.longitude);
+                document.landmarkRemark.currentMarker = createMarker(googleLatLong, "green");
+
+                document.landmarkRemark.map.panTo(googleLatLong);
+            }
+        });
+    }
+    
+    function createMarker(latLng, color, remark){
+	    var markerOptions = {
+            position: latLng,
+            map: document.landmarkRemark.map,
+		    clickable: true
+	    };
+
+        var marker = new google.maps.Marker(markerOptions);
+        if (color == "green") {
+            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png')
+        }
+
+        var info = "Location: Lat " + latLng.lat().toFixed(2) +
+            ", Lng " + latLng.lng().toFixed(2) + "<br\>" +
+            remark;
+        
+        google.maps.event.addListener(marker, "click", function (event) {
+            document.landmarkRemark.infoWindow.setContent(info);
+            document.landmarkRemark.infoWindow.open(
+                document.landmarkRemark.map, marker);
+        });
+
+        return marker;
+    }
+
+    function createRemark(latitude, longitude, remark) {
+
+        var command = {
+            Remark: remark,
+            Location: {
+                Longitude: longitude,
+                Latitude: latitude
+            }
+        };
+
+        var googleLatLong = new google.maps.LatLng(latitude, longitude);
+        
+        $.ajax({
+
+            type: "POST",
+            url: "/api/remarks",
+            data: JSON.stringify(command),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json"            
+        });
+        createMarker(googleLatLong, "red", remark);
+    }
+
+    $(document).ready(function () {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(displayLocation);
+
+        } else {
+            alert("Sorry, this browser doesn't support geolocation!");
+        };
+    });
+
+</script>
+
+}
+
+
+
+
+

@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.6.1" />
+    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="MediatR" Version="3.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LandmarkRemark.CrossCutting\LandmarkRemark.CrossCutting.csproj" />
+    <ProjectReference Include="..\LandmarkRemark.Entity\LandmarkRemark.Entity.csproj" />
+    <ProjectReference Include="..\LandmarkRemark.Infrastructure\LandmarkRemark.Infrastructure.csproj" />
+    <ProjectReference Include="..\LandmarkRemark.UseCase\LandmarkRemark.UseCase.csproj" />
+  </ItemGroup>
+
+</Project>

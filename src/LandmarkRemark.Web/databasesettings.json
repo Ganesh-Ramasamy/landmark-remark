@@ -1,0 +1,3 @@
+﻿{
+    "ConnectionString": "Server=(localdb)\\\\mssqllocaldb;Initial Catalog=tienhuat_LandmarkRemark;Integrated Security=true;AttachDbFileName=D:\\tienhuat\\bitbucket\\landmarkremark\\practices-landmarkremarks\\src\\LandmarkRemark.Web\\wwwroot\\App_Data\\LandmarkRemark.mdf"
+}
