@@ -17,6 +17,23 @@ It is a sample application I created to learn how to create an application based
 [Vertical Slicing](https://www.kenneth-truyers.net/2016/02/02/vertical-slices-in-asp-net-mvc/), CQRS, SOLID principles, and
 my past experience developing the web applications.
 
+## Log in
+![Log in](/tienhuat/landmark-remark/blob/master/doc/diagrams/login.png)
+
+## Show current location and enter remark
+![Show current location](/tienhuat/landmark-remark/blob/master/doc/diagrams/enter%20remark.png)
+
+## Show my remarks
+![List my remarks](/tienhuat/landmark-remark/blob/master/doc/diagrams/my%20remarks.png)
+
+## Show remarks of other users
+![Show remark of other users](/tienhuat/landmark-remark/blob/master/doc/diagrams/remarks%20of%20other%20users.png)
+
+## Search remarks
+![Search remarks](/tienhuat/landmark-remark/blob/master/doc/diagrams/search%20remark%20result.png)
+
+
+
 # Installation
 1. Install Visual Studio 2017 Professional
 1. Install SQL Server 2016 Express
