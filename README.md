@@ -13,7 +13,7 @@ Landmark Remark is a ASP.NET MVC Core web application optimized for mobile devic
 1. As a user I have the ability to search for a note based on contained text or user name
 
 It is a sample application I created to learn how to create an application based on  
-[Clean Architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html), Screaming Architecture,
+[Clean Architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html), [Screaming Architecture](https://8thlight.com/blog/uncle-bob/2011/09/30/Screaming-Architecture.html),
 [Vertical Slicing](https://www.kenneth-truyers.net/2016/02/02/vertical-slices-in-asp-net-mvc/), CQRS, SOLID principles, and
 my past experience developing the web applications.
 
@@ -24,7 +24,7 @@ my past experience developing the web applications.
 1. Edit the connection string at src\LandmarkRemark.Web\databasesettings.json
 1. Open src\LandmarkRemark.sln using Visual Studio 2017
 1. Log in as `john1@gmail.com`, `john2@gmail.com`, or `john3@gmail.com` using password `password`
-1. You must **enable location services of the testing browser**. Eg if you use Chrome, refer to the link to enable the location server: http://www.wikihow.com/Enable-Location-Services-on-Google-Chrome
+1. You must **enable location services of the testing browser**. Eg if you use Chrome, refer to the link to enable the location service: http://www.wikihow.com/Enable-Location-Services-on-Google-Chrome
 
 # Technoloiges Used
 * ASP.NET MVC Core
@@ -68,7 +68,7 @@ my past experience developing the web applications.
 	* Independent of any external agency
 
 ## Screaming Architecture
-Architecture should reveal the intent of the requirements, instead of cluttering by the framework.
+Architecture should reveal the intent of the requirements, instead of cluttered by the conventioan of the framework.
 
 In order to achieve this, the use cases should sit in the top level folder in the source code. 
 We can employ Vertical Slicing to achieve this. Vertical Slicing means the source codes are partitioned by use cases as much as 
@@ -128,7 +128,7 @@ business layer to be aware of the implementation details.
 Each layer is only allowed to access the source code **one layer below it**. This means that the presentation
 layer can access the public API of use case layer, but it cannot access those of entity layer. 
 This ensures that the presentation layer is always accessing the source code optimized for it (use case layer),
-and it is not cluttered with domain model which sometimes giving the the presentation layer more information
+and it is not cluttered with domain model which sometimes gives the the presentation layer more information
 or methods than it requires.
 
 Presentation layer depends only on use case layer, without additional dependency of entity layer. 
@@ -142,7 +142,7 @@ the respective assembly,
 Infrastructure layer contains any method used to access the database, web services, and/or other technologies related
 API. The implementation of use case and entity layers have access to infrastructure layer. However, all the public interfaces
 of entity and use case layer do not depend on the infrastructure layer. In this project, the infrastructure contains only
-the connection factory. If Entity Framework Core is used, the DbContext should be replaced here, so that the public API
+the connection factory. If Entity Framework Core is used, the DbContext should be placed here, so that the public API
 of entity and use case layers do not depend on the Entity Framework Core.
 
 Cross cutting layer contains API which can be used by all other layers, eg. clock or timing funtions.
