@@ -84,6 +84,8 @@ my past experience developing the web applications.
 	* Independent of Database
 	* Independent of any external agency
 
+![Clean architecture](doc/diagrams/clean%20architecture.png)
+
 ## Screaming Architecture
 Architecture should reveal the intent of the requirements, instead of cluttered by the conventioan of the framework.
 
@@ -163,6 +165,8 @@ the connection factory. If Entity Framework Core is used, the DbContext should b
 of entity and use case layers do not depend on the Entity Framework Core.
 
 Cross cutting layer contains API which can be used by all other layers, eg. clock or timing funtions.
+
+![Dependency diagram](doc/diagrams/ependency.png)
 
 
 # TODO
