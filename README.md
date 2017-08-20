@@ -119,6 +119,28 @@ The emphasis on use cases does not preclude us from performing the domain modell
 The one thing we must follow is that use case layer is always implemented and optimized for the presentation, 
 and no domain logic is allowed to be leaked into presentation layer, so that presentation layer can be simplified.
 
+## Presentation Layer
+![Presentation layer](doc/diagrams/presentation.png)
+
+
+## Use Case Layer
+![Use case layer](doc/diagrams/usecase.png)
+
+## Use Case Layer
+![Use case layer](doc/diagrams/usecase.png)
+
+
+## Infrastructure Layer
+![Infrastructure layer](doc/diagrams/infrastructure.png)
+
+
+## Crosscutting Layer
+![Crosscutting layer](doc/diagrams/Crosscutting.png)
+
+## Bootstrapping Layer
+![Bootstrapping layer](doc/diagrams/Bootstrapping.png)
+
+
 ## Command Query Responsibilities Segregation (CSRS) is Used in Conjunction with a Event Bus
 
 Here a small library MediatR is used to provide in-process event bus, so that we can decouple the
@@ -167,6 +189,8 @@ the connection factory. If Entity Framework Core is used, the DbContext should b
 of entity and use case layers do not depend on the Entity Framework Core.
 
 Cross cutting layer contains API which can be used by all other layers, eg. clock or timing funtions.
+
+Bootstrapping layer contains the dependency management using Autofac dependency injection framework. It is friend to assemblies of use case and entity layers.
 
 ![Dependency diagram](doc/diagrams/dependency.png)
 
