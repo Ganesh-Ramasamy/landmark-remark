@@ -122,9 +122,8 @@ and no domain logic is allowed to be leaked into presentation layer, so that pre
 ## Presentation Layer
 ![Presentation layer](doc/diagrams/presentation.png)
 
+There is no Controllers and Views folder. Each use case is located in a folder under Features folder that contains all the views, controllers, and other source codes. Use cases are prominently reflected by the source code.
 
-## Use Case Layer
-![Use case layer](doc/diagrams/usecase.png)
 
 ## Use Case Layer
 ![Use case layer](doc/diagrams/usecase.png)
