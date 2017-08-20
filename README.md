@@ -18,19 +18,19 @@ It is a sample application I created to learn how to create an application based
 my past experience developing the web applications.
 
 ## Log in
-![Log in](/tienhuat/landmark-remark/blob/master/doc/diagrams/login.png)
+![Log in](doc/diagrams/login.png)
 
 ## Show current location and enter remark
-![Show current location](/tienhuat/landmark-remark/blob/master/doc/diagrams/enter%20remark.png)
+![Show current location](doc/diagrams/enter%20remark.png)
 
 ## Show my remarks
-![List my remarks](/tienhuat/landmark-remark/blob/master/doc/diagrams/my%20remarks.png)
+![List my remarks](doc/diagrams/my%20remarks.png)
 
 ## Show remarks of other users
-![Show remark of other users](/tienhuat/landmark-remark/blob/master/doc/diagrams/remarks%20of%20other%20users.png)
+![Show remark of other users](doc/diagrams/remarks%20of%20other%20users.png)
 
 ## Search remarks
-![Search remarks](/tienhuat/landmark-remark/blob/master/doc/diagrams/search%20remark%20result.png)
+![Search remarks](doc/diagrams/search%20remark%20result.png)
 
 
 
