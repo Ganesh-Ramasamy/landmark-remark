@@ -86,6 +86,8 @@ my past experience developing the web applications.
 
 ![Clean architecture](doc/diagrams/clean%20architecture.png)
 
+The source code outside is depending on source code one layer inside of it, meaning the arrow of the dependency points inward.
+
 ## Screaming Architecture
 Architecture should reveal the intent of the requirements, instead of cluttered by the conventioan of the framework.
 
@@ -166,7 +168,7 @@ of entity and use case layers do not depend on the Entity Framework Core.
 
 Cross cutting layer contains API which can be used by all other layers, eg. clock or timing funtions.
 
-![Dependency diagram](doc/diagrams/ependency.png)
+![Dependency diagram](doc/diagrams/dependency.png)
 
 
 # TODO
